@@ -1,3 +1,0 @@
-textgrid
-click
-g2p_en
