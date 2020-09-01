@@ -36,7 +36,7 @@ class TTSModel():
         self.tacotron2 = TFAutoModel.from_pretrained( config=tacotron2_config, pretrained_path=config.tacotron2_pretrained_path, training=False,  name="tacotron2" )
         self.tacotron2.setup_window(win_front=5, win_back=5)
 
-        tf.saved_model.save(self.tacotron2, "./test_saved", signatures=tacotron2.inference)
+        tf.saved_model.save(self.tacotron2, "./test_saved", signatures=self.tacotron2.inference)
         self.tacotron2 = tf.saved_model.load("./test_saved")
 
         mb_melgan_config = AutoConfig.from_pretrained( config.multiband_melgan_baker )
