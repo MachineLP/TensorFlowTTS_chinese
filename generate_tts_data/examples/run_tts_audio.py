@@ -32,8 +32,8 @@ if __name__ == "__main__":
     client = ali_speech.NlsClient()
     # 设置输出日志信息的级别：DEBUG、INFO、WARNING、ERROR。
     client.set_log_level('INFO')
-    appkey = 'uYzyInI9xS3foVHU'
-    token = '1fd291b7716c48fd9f4adc2915f7d549'
+    appkey = '***'
+    token = '***'
 
     
 
