@@ -30,12 +30,26 @@ class TTSModel():
         self.__init_model()
         self.tts_pause = TTSSegPause()
         self.tts_py = TTSPinYin()
-
+    
     def __init_model(self):
-        tacotron2_config = AutoConfig.from_pretrained( config.tacotron2_baker )
-        self.tacotron2 = TFAutoModel.from_pretrained( config=tacotron2_config, pretrained_path=config.tacotron2_pretrained_path, training=False,  name="tacotron2" )
+        input_text = "你好, 很高兴认识你"
+        self.processor = AutoProcessor.from_pretrained(pretrained_path=config.baker_mapper_pretrained_path)
+        input_ids = self.processor.text_to_sequence(input_text, inference=True)
+        # tacotron2_config = AutoConfig.from_pretrained( config.tacotron2_baker )
+        # self.tacotron2 = TFAutoModel.from_pretrained( config=tacotron2_config, pretrained_path=config.tacotron2_pretrained_path, training=False,  name="tacotron2" )
+        tacotron2_config = AutoConfig.from_pretrained( config.tacotron2_baker  )
+        self.tacotron2 = TFAutoModel.from_pretrained(
+            config=tacotron2_config,
+            pretrained_path=None,
+            is_build=False, # don't build model if you want to save it to pb. (TF related bug)
+            name="tacotron2"
+        )
         self.tacotron2.setup_window(win_front=5, win_back=5)
-
+        _, mel_outputs, stop_token_prediction, alignment_history = self.tacotron2.inference(
+            tf.expand_dims(tf.convert_to_tensor(input_ids, dtype=tf.int32), 0),
+            tf.convert_to_tensor([len(input_ids)], tf.int32),
+            tf.convert_to_tensor([0], dtype=tf.int32) )
+        self.tacotron2.load_weights(config.tacotron2_pretrained_path)
         tf.saved_model.save(self.tacotron2, "./test_saved", signatures=self.tacotron2.inference)
         self.tacotron2 = tf.saved_model.load("./test_saved")
 
