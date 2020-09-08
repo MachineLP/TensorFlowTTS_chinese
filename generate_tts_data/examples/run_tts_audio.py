@@ -9,8 +9,8 @@ import ali_speech
 
 # 创建AcsClient实例
 client = AcsClient(
-   "LTAI4GHMr3H57pxJ4CScsv5G",
-   "PkRPqTCFVVliD99z3EfOACF4lH7tQY",
+   "****",
+   "****",
    "cn-shanghai"
 );
 
