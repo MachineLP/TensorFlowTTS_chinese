@@ -23,9 +23,13 @@ class config:
 
     tacotron2_baker = "./data/model_config/tacotron2.baker.v1.yaml"
     tacotron2_pretrained_path = "./data/model/tacotron2-100k.h5"
+    # "/home/suser/machinelp/TensorflowTTS/examples/tacotron2/exp/train.tacotron2.baker.v1/checkpoints/model-50000.h5"
 
     multiband_melgan_baker = "./data/model_config/multiband_melgan.baker.v1.yaml"
     multiband_melgan_pretrained_path = "./data/model/mb.melgan-920k.h5"
+    # "/home/suser/machinelp/TensorflowTTS/examples/multiband_melgan/exp/train.multiband_melgan.bakerpp.v1/checkpoints/generator-40000.h5"
     
     baker_mapper_pretrained_path = "./data/model_config/baker_mapper.json"
+
+
 
