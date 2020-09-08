@@ -7,9 +7,9 @@ class config:
 
     # 实例:dts-wanli-m 库:wanwu_product
     MYSQL_DB_NAME = 'smart_call'
-    ONLINE_MYSQL_URL_ONLINE = 'mysql+mysqldb://ml_r:H193Ljd2p3o@rm-2ze40s6x2vs1p34t7bo.mysql.rds.aliyuncs.com:3306/' + MYSQL_DB_NAME + '?charset=utf8'
+    ONLINE_MYSQL_URL_ONLINE = 'mysql+mysqldb://***:3306/' + MYSQL_DB_NAME + '?charset=utf8'
 
-    GET_VOICE_TEXT_SQL = ''' select smart_call.call_scenes_node.mix_voice_text from smart_call.call_scenes_node where smart_call.call_scenes_node.is_deleted=0 and smart_call.call_scenes_node.call_scenes_node_status=1 '''   
+    GET_VOICE_TEXT_SQL = '''  '''   
 
     baker_mapper_pretrained_path = "./data/baker_mapper.json"
 
