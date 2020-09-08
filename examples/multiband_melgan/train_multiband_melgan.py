@@ -149,6 +149,11 @@ class MultiBandMelganTrainer(MelganTrainer):
             audios, tf.squeeze(y_hat, -1), self.full_band_stft_loss
         )
 
+        sub_sc_loss = tf.where(sub_sc_loss >= 10.0, 0.0, sub_sc_loss)
+        sub_mag_loss = tf.where(sub_mag_loss >= 10.0, 0.0, sub_mag_loss)
+        full_sc_loss = tf.where(full_sc_loss >= 10.0, 0.0, full_sc_loss)
+        full_mag_loss = tf.where(full_mag_loss >= 10.0, 0.0, full_mag_loss)
+
         # define generator loss
         gen_loss = 0.5 * (sub_sc_loss + sub_mag_loss) + 0.5 * (
             full_sc_loss + full_mag_loss
@@ -304,6 +309,13 @@ def main():
         type=int,
         help="using mixed precision for discriminator or not.",
     )
+    parser.add_argument(
+        "--pretrained",
+        default="",
+        type=str,
+        nargs="?",
+        help='path of .h5 mb-melgan generator to load weights from',
+    )
     args = parser.parse_args()
 
     # return strategy
@@ -445,6 +457,10 @@ def main():
         y_mb_hat = generator(fake_mels)
         y_hat = pqmf.synthesis(y_mb_hat)
         discriminator(y_hat)
+
+        if len(args.pretrained) > 1:
+            generator.load_weights(args.pretrained)
+            logging.info(f"Successfully loaded pretrained weight from {args.pretrained}.")
 
         generator.summary()
         discriminator.summary()
