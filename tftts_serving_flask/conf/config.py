@@ -7,7 +7,7 @@ class config:
     SUFFIX = '' if 'pinyin' in CWD else './'
     MY_DICT = './data/mydict.dic'
     WORDS_MAPPING_PATH = "./data/words_mapping.csv"
-    LOG_PATH = './logs/server_{}.log'
+    LOG_PATH = './logs/server.log'
     PINYIN_TXT = "./data/pinyin.txt"
     LARGE_PINYIN_TXT = "./data/large_pinyin.txt"
 
