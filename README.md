@@ -16,3 +16,6 @@
 >（1）https://github.com/google/re2 
 >（2）https://github.com/speechio/chinese_text_normalization 
 
+注音方法：
+> （1）https://github.com/kakaobrain/g2pM
+> （2）https://github.com/MachineLP/TensorFlowTTS_chinese/blob/master/generate_tts_data/core/tftts_pinyin.py
