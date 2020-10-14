@@ -31,5 +31,5 @@ CUDA_VISIBLE_DEVICES=3 nohup python -u examples/multiband_melgan/train_multiband
   --outdir ./examples/multiband_melgan/exp/train.multiband_melgan.bakerpp.v1/ \
   --config ./examples/multiband_melgan/conf/multiband_melgan.bakerpp.v1.yaml \
   --use-norm 1 \
-  --resume ./examples/multiband_melgan/exp/train.multiband_melgan.bakerpp.v1/checkpoints/ckpt-200000 > train_multiband_melgan_all.log 2>&1 &
+  --resume ./examples/multiband_melgan/exp/train.multiband_melgan.bakerpp.v1/checkpoints/ckpt-420000 > train_multiband_melgan_all.log 2>&1 &
 
