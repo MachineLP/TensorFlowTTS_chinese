@@ -4,10 +4,10 @@ services:
     build: .
     restart: always
     ports:
-      - "47260-47269:47260-47269"
+      - "9940-9949:9940-9949"
     volumes:
       - .:/workspace
     tty: true
-    command: python run_service.py 47260 > run_service.log
+    command: python tensorflow_tts_run.py > run.log
     environment:
-      - CUDA_VISIBLE_DEVICES=0,1
+      - CUDA_VISIBLE_DEVICES=2
