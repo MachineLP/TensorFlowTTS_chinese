@@ -7,7 +7,9 @@ services:
       - "9940-9949:9940-9949"
     volumes:
       - .:/workspace
+    runtime: nvidia
     tty: true
-    command: python tensorflow_tts_run.py > run.log
+    # command: python tensorflow_tts_run.py > run.log
+    command: gunicorn -w 3 -b 0.0.0.0:9949 tensorflow_tts_run:app
     environment:
       - CUDA_VISIBLE_DEVICES=2
